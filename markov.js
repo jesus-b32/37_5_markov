@@ -32,7 +32,6 @@ class MarkovMachine {
         }
     
         this.chain = chain;
-        // console.log(chain);
     }
 
     static choice(array) {
@@ -43,26 +42,19 @@ class MarkovMachine {
     /** return random text from chains */
 
     makeText(numWords = 100) {
+        let markovOutput = [];
         let markovKeys = [...this.chain.keys()]; // make an array from chain map key values
         let randomKey = MarkovMachine.choice(markovKeys);
-        let markovOutput = [];
 
-        // produce markov chain until reaching termination word
+        // produce markov chain until null is selected as random key
         while (markovOutput.length < numWords && randomKey !== null) {
-            markovOutput.push(randomKey);
-            randomKey = MarkovMachine.choice(this.chain.get(randomKey)); //update random key value to one of the possible next words that is mapped in chain
+            markovOutput.push(randomKey); //push word to array
+            randomKey = MarkovMachine.choice(this.chain.get(randomKey)); //update random key value to be one of the possible next words that is mapped in chain
         }
 
-        return markovOutput.join(" ");
+        return markovOutput.join(" "); // make a sigle string with space between each word
     }
 }
-
-
-// let mm = new MarkovMachine("the cat in the hat");
-// console.log(mm.makeChains());
-// console.log(mm.makeText(numWords=25));
-
-
 
 module.exports = {
     MarkovMachine,

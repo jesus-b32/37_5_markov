@@ -27,7 +27,8 @@ async function webMarkov (url) {
     }
 }
 
-// process.argv[2] would be file text or url in: node step2.js (url or text file)
+// example: node makeText.js file eggs.txt
+// example: node makeText.js url http://www.gutenberg.org/files/11/11-0.txt
 let method = process.argv[2];
 let path = process.argv[3];
 
@@ -36,6 +37,6 @@ if (method === 'url') {
 } else if (method === 'file') {
     textMarkov(path);
 } else {
-    console.error(`Unknown method: ${method}`);
+    console.error(`Unknown method used: ${method}`);
     process.exit(1);    
 }
